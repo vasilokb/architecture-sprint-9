@@ -174,7 +174,7 @@ Rel(call_center_system, abs, "Подтверждение условий, зап�
 
 ### Диаграмма контейнеров
 
-(![Диаграмма](https://drive.google.com/uc?id=10c2C2lhgb6pCF-CCOV79pFpa4L6P-YNd))
+![Диаграмма](https://drive.google.com/uc?id=10c2C2lhgb6pCF-CCOV79pFpa4L6P-YNd)
 
 ```plantuml
 @startuml
