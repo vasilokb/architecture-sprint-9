@@ -123,38 +123,7 @@
 ## Диаграммы C4
 
 ### Диаграмма контекста
-
-```plantuml
-@startuml
-!include https://raw.githubusercontent.com/vasilokb/plantUML/refs/heads/main/C4.puml
-
-Person(client, "Клиент", "Взаимодействует с сайтом и интернет-банком")
-Person(deposit_back_office, "Бэк-офис депозитов", "Управляет ставками")
-Person(credit_back_office, "Бэк-офис кредитов", "Просматривает ставки")
-
-System(website, "Веб-сайт", "Отображает продукты, собирает заявки", "React, Spring Boot, MS SQL") #lightblue
-System(internet_bank, "Интернет-банк", "Обеспечивает открытие депозитов", "React, Spring Boot, MS SQL") #green
-System(back_office_ui, "Back-Office UI", "Интерфейс для бэк-офиса", "React, Spring Boot") #purple
-System(deposit_system, "Deposit System", "Обрабатывает продукты, заявки, счета, депозиты, уведомления, ставки", "Spring Boot, MS SQL") #lightgreen
-System(abs, "АБС", "Управляет счетами, депозитами, ставками, данными клиентов", "Delphi, Oracle") #lightblue
-System(call_center_system, "Система колл-центра", "Обрабатывает заявки с сайта", "React.js, Java Spring Boot, PostgreSQL") #lightgreen
-System(sms_gateway, "СМС-шлюз", "Отправляет уведомления клиентам") #lightgray
-
-Rel(client, website, "Просмотр продуктов, подача заявки", "HTTPS")
-Rel(client, internet_bank, "Аутентификация, выбор депозита, просмотр счетов, подтверждение", "HTTPS")
-Rel(deposit_back_office, back_office_ui, "Управление ставками", "HTTPS")
-Rel(credit_back_office, back_office_ui, "Просмотр ставок", "HTTPS")
-Rel(website, deposit_system, "Запрос продуктов, подача заявки", "REST API")
-Rel(internet_bank, deposit_system, "Запрос продуктов, счетов, подача заявки", "REST API")
-Rel(back_office_ui, deposit_system, "Управление и просмотр ставок", "REST API")
-Rel(deposit_system, abs, "Запрос данных, операции, ставки", "REST API, Kafka")
-Rel(deposit_system, call_center_system, "Передача заявки, результат обработки", "Kafka")
-Rel(deposit_system, sms_gateway, "Отправка СМС", "REST API")
-Rel(call_center_system, deposit_system, "Запрос продуктов, ставок", "REST API")
-Rel(call_center_system, abs, "Подтверждение условий, запрос данных клиента", "REST API, Kafka")
-
-@enduml
-```
+(https://img.plantuml.biz/plantuml/png/dLR9RjDG5DrNwZ-Oi04fQJQiM34KYL6Kfbr7ByvhOkhOaUrGTLTI9gbCPGD2YAhY1zAAq3HJV-7wZpZtEN4y9GnIbEPDzzntphtdzORh2SThDSpbfKk6fPkjgjJgdjTqhnUBZjXPgHbUlLLfkTBHRSkJbhUYsutYC-4QfhrTAJPDONcRZnuM7Rdb5kjILDrYGnXMyVQrbQQAkhoq9XtNjgxefe7ZUIr7Nsb0FUhIo6_dUFo9pgY3cI6DwIVcp_tdVfjE_Ntg-ctDVuuFriynDwQXHZry-2nMzsZ4UmfqWWqZwlE6tDKGiYgRjcjuvOhGjylsrfQXIyOxzDzHlq1Z_mNr45rXNk3e6OQCSQgo-a4NYD-XKnhu7oQPO9ad-lWUKY-2f3ko-cUWFW9s0HU5ESBS61SSKiTlutSFyJj9E0Mrl5JQTJtPkB8ZAxYL3AZhqabXoeyA-5q5Fr6v_vg4KbS1kQ2q3vI3F5EAJSXaRxe56k2U0HhYh4kXGwrIqp6icdRBjZ5uLD9AJnxchcgNJQDMzofcIuP96QWEnvBCWRNDUNoPer6G94PTv721xzUHEuEADjFa7-0lQcIEE8kJgpbIMc5Y4KtABGE7Rs6Yy5XDQ9ltSh5SePIgFyQ5x1fuZ4f8dMnqHcssdAOvusDQUwuQujHgCA45wrCM5FydIlk36GifkQBgi7WWhSlLaKyGfAJTnpukCpG3EWrzXfKF-NWz0NwHj74AHSNbT3_I8HtFxur9IjmPoRIciyaEKlkuAaQu_P0xkp_pXgdOgz9irY7SOqVefiokFbsOPbcNN8CpnkcODMDXkRiqPGy36XJyLm40Ns6n3X7MOpuqAuELfw3cldWcuiMuPhlCuNnAtOPRhWbFxeZT8DDlT5pmtu3FztGMzd6AvKnfuwnrs093JB7Bnh4kpT1_8-unyvuniv6eE-OV0bqeL-v0taxA9EvkRAoLs9kY02ad-EZlAn4uknut4iiF4LHLmkSFGFoOuHCravya5CamBBD8RlnMA9_vfGACc8bKSfbFGSeQeeKz3PMs_TJ5Cym_7Jf9TXXs77XYB6GeKif6w3CEJMZvTy7MxvGsj9jhzwOu2Qt-7IrBaB_4JbAK1izIWqqYeofYL2QHaf4dVXQxM-X3_alSOwnUfhsWJ1FE5RjCNdiWjhR5FAHiNpfIiRkPJ06Abyv0yi1_ow3gMGmTIZsGGGuBaHC64tMJFaCgnyaYAolb_wgBXP9aeKnaEPhNrB0_Y3vW00pFWrSnKy648yuHR7dfXhIg-2_rDm00)
 
 **Описание**:
 - **Клиент**: Взаимодействует с веб-сайтом (просмотр продуктов, заявки) и интернет-банком (аутентификация, открытие депозитов, просмотр счетов).
@@ -169,7 +138,7 @@ Rel(call_center_system, abs, "Подтверждение условий, зап�
 - **СМС-шлюз**: Отправляет уведомления клиентам (F4.2, F4.3).
 
 ### Диаграмма контейнеров
-
+(jLXjRzjK5FvUgV_X4hviKbuGujC-hHqJ3DQjDDqdGD6DupIcZctPJak59dKjOqCPRAkGG6XYLFo1j90sRTBqBrp_8yuvVidrQm82gUlg6_kyFSyvvt5kEowttLvNNrvwHpCKlTTIMSTrBUTMhMRptUgMvdPwpPwZseffkAhXLXMpMzlXZgQRsysQfNF3VRHslsQhRQVMKNdBgNMvPjJkV52roEhoqhfgEwPnGz4rUBpCIk9NCHOZCHHNta49hu_4kHZ0oKHCnLzmVk4zyGx4gNSeXju1yvx03tn-0MTJCM5Y13_uB7owBwxmdeeuWHkkn2NUKBePkMofbkbeRgF9bUs6sMvhYeh-Ndi_YCkAc7hVYX5O9v_NyEWvNAAFKuhg3t4DzWVYL8ozbq4ay34UNCBlYHX9dXHRRSrtT0a6X-1ETlCMpgQGu4GCl0FuUmJs1qbtv6fvQTNi6IrkxzreScExuUmvhjebFtxshCB4CNh2seY9ro_TPDyiBp5s1w03K5JxngxQX8AeVjM7ugGIbXPZsL2v0W3LBLipjjYgQSB5MftLFxjFaVv6KPzGKSw26Ab6W1fWTGdXzyk85Tm4KUo7jm2uKC0W3VQkhcrrtARUK-EHQS0ksr2nXiOsklib1-D58eLxXn38DVn-9bKK2ds087Xz-1yOc0KzHBXbgweHZqu2jj7JmCSg75GUqW5xT2yxfb8i3I01KHkT0gCOL59cXnYWQwjdMpfL9i8w975NKsmJ-d07N3fW-KF_dAt9vo7YSkoMRRPwYji8xe57r_qJLlTFCCwyKixeEKLw9W37Yb53NbE62FqLr1hR6r7_3X9x6M4UbLKEZbkMhYdSrKn32d1bThfGa3Gu1e3rO4QtAJG4XXPIziH77sxnAHgGu69EV8e2GCZ5M_5F5eahtZ4myB98TmM1FCLcVuOS3JcO7r78Xrb48HEo8w98VWUNV_gZ0QFnaScWlmycGNnAlOVreiuRO_U5DCsFpZ1ThPq6z85qN1GdLYmSk-JwMBmHnyKkRUwgZkHh0w-Bd4YJFG8bFTkJBX_79m9lEWtUuXPCBIJ5Qfsj-5U5X00ol8P6yNaO3e9NCC2Flp0-5yS11mQtyBEfH5keVNZxolgzufOJep8JFyd8UlqYWv_ozZOdarHiU7YH0e75AsI9rnSNNqhLudkfEc7cb6E9oAfR7PYW3sskw6h-fWqgWQxAIQ86fycGw3xS4T1IU0qBTwOqOesLNZ_SqXfRG9nTleTmGeq_ygymmWTRcl4rXBpISpli_Ufx5FKRgFQ-znp-7T8WYGOUX36WCz_l2ESxXfWQXybIALpN6ugAYr1Qxj96HywWnXcBSGMiaNsiNBH-gbz1iJ_XEpo-6jTD1taiiz1d0agE_cmzPctgZ6NeT1sfLZvhAjvpGEz7SPvgumZJGnmfI4D89E0Lib_6Q83oBLQVnwXxDbGzae-IWfc_cygCM9FQ3PWWMFXuStEzZj9ATf0I8g_omGJxs03OKlifaeREKSlIB3sZEwYTKjupfMfATImskbAPPOZJjEbaDIEpKrzpnKn6ACJxHlmCJrpxXhm-O8kx5bC_zIKEm8jKlLlVn34M6ajKF67ocDJ-KuBMR-qX0VdF_IHpdXTxQf4a3SOCf6MMR363d7CjPckZRBKJCBhONahB_6k5CizLSYTd4ZVI6WMiA_IIFJ2BguvUvpl9A7nQT_ajaokKoDF-8iAB1ZYjuS88ijDzI-w7kPI8sSqoaKCpb8pdKBUnzm93fDUdX9GU5JjBLIn77EQflgIzL8V5DLWS-4W907NZEwQ80MKMXo7PCOjwdDSigT8a3Fz_p4fqPiBlelibcKychn8fvUr2K0QGr9ZoXVUnScow5m5P05nMFF_9WCuod1fsijcviqQkKY2MZt2RORkHnWzLFNuJDjFHEObdjrX2iUNtcnpTyX8OKvcDOeoPRNbTeXwKDB8y6UAI4X99R-_GIMADLz6gEC8lHWuH1kzxrBoClXOyymKglRHxB-XbXbeYu2cxkmEGpC89NgmcsH8TIaargyI_203_gj728GNl1hVXprvN_ni0)
 ```plantuml
 @startuml
 !include https://raw.githubusercontent.com/vasilokb/plantUML/refs/heads/main/C4.puml
