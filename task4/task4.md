@@ -73,7 +73,7 @@ deposit_id,rate,term,min_amount
 ## Диаграммы C4
 
 ### Диаграмма контекста
-
+![Диаграмма](https://drive.google.com/uc?id=12powb6XjsULPGeeVT5iX54iyZSeDdUsG)
 ```plantuml
 @startuml
 !include https://raw.githubusercontent.com/vasilokb/plantUML/refs/heads/main/C4.puml
@@ -110,7 +110,7 @@ Rel(deposit_system, abs, "Запрос ставок", "REST API")
 - **SFTP-сервер**: Защищённое файловое хранилище для CSV.
 
 ### Диаграмма контейнеров
-
+![Диаграмма](https://drive.google.com/uc?id=1X9Y-Ni8zOueUiAbML0udDe5E5uJQI6ru)
 ```plantuml
 @startuml
 !include https://raw.githubusercontent.com/vasilokb/plantUML/refs/heads/main/C4.puml
